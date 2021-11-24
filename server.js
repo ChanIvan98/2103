@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
-//Setting up the Environment
-const port = process.env.PORT;
-const host = process.env.HOST;
 app.use(cors());
 
 //Setting up account route
@@ -22,11 +20,10 @@ app.use('/recipes', recipes);
 
 //Setting up homepage routes
 var homepage = require('./routes/homepage');
-app.use("/",homepage);
+app.use("/", homepage);
 
 
-app.listen(port,host, () => {
+app.listen(3000, () => {
   // print a message when the server starts listening
-  console.log("server starting on " + host + ":" + port);
-  
+  console.log("server starting on localhost:3001");
 });
